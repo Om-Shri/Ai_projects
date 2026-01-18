@@ -34,12 +34,15 @@ def process_command(command : str) -> any:    #Process command function which pr
         webbrowser.open("https://web.whatsapp.com/")
     
     elif "open github" in command:
+        speak("opening github")
         webbrowser.open("https://github.com/")
 
     elif "open instagram" in command :
+        speak("opening instagram")
         webbrowser.open("https://www.instagram.com/")
 
     elif "open chat gpt" in command:
+        speak("opening chatgpt")
         webbrowser.open("https://chatgpt.com/")
 
     elif "play" in command :
