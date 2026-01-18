@@ -5,7 +5,7 @@ import time
 import win32com.client as wc
 from music import musics       #creat music file with key = name of song and value = link of song.
 from pytube import Search      #pip install pytube . in this program it is used for play first video in search.
-
+import pyautogui
 
 r = sr.Recognizer()    
 #Speaker system
@@ -54,7 +54,18 @@ def process_command(command : str) -> any:    #Process command function which pr
             speak(f"playing {song} ")
             webbrowser.open(video.watch_url)
 
+    elif "turn off" in command:
+        if "close" in command and "turn off" in command:
+            pyautogui.hotkey("win","m")
+            time.sleep(1)
+            pyautogui.hotkey("alt","f4")
+            time.sleep(1)
+            pyautogui.click(978,520)
+        else:
+            pyautogui.hotkey("alt","f4")
+            pyautogui.leftClick(978,520)
 
+        
 if __name__ == "__main__":
     speak("Initializing Komal")
 
