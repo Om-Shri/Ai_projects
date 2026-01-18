@@ -51,6 +51,7 @@ def process_command(command : str) -> any:    #Process command function which pr
         else:
             s = Search(song)
             video = s.results[0]
+            speak(f"playing {song} ")
             webbrowser.open(video.watch_url)
 
 
@@ -73,9 +74,9 @@ if __name__ == "__main__":
 
                 print("Komal activate...")
                 speak("hii honey")
-                speak("Komal is ready for command")
                 print("Komal is ready for command...")
-
+                speak("Komal is ready for command")
+                
                 while True :
                     try:
                         with sr.Microphone(device_index=2) as source:
