@@ -78,13 +78,13 @@ if __name__ == "__main__":
             with sr.Microphone(device_index=2) as source:
                 print("Listening...")
                 r.adjust_for_ambient_noise(source, duration=1)
-                audio = r.listen(source, timeout=10, phrase_time_limit=1)
+                audio = r.listen(source, timeout=20, phrase_time_limit=1)
 
             print("Recognizing...")
             word = r.recognize_google(audio)
-
+            word = word.lower()
             print(word)
-            if  word.lower() == "activate":
+            if  word == "activate":
 
                 print("Komal activate...")
                 speak("hii honey")
@@ -108,13 +108,17 @@ if __name__ == "__main__":
                                 speak("deactivating")
                                 speak("see you later honey")
                                 break
+                            elif command == "status":
+                                speak(" I am Active")
+                                continue
 
                             process_command(command)
 
                     except Exception as e:
                         print("Error:",e)
 
+            elif word == "status":
+                speak("I am Deactive")
+
         except Exception as e:
             print("Error:", e)
-
-        
