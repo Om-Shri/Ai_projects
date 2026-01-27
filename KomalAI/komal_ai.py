@@ -5,7 +5,7 @@ import time
 import win32com.client as wc
 from music import musics       #creat music file with key = name of song and value = link of song.
 from pytube import Search      #pip install pytube . in this program it is used for play first video in search.
-import pyautogui
+import pyautogui as gui
 
 r = sr.Recognizer()    
 #Speaker system
@@ -45,6 +45,10 @@ def process_command(command : str) -> any:    #Process command function which pr
         speak("opening chatgpt")
         webbrowser.open("https://chatgpt.com/")
 
+    elif "open crunchyroll" in command:
+        speak("opening chrunchyroll")
+        webbrowser.open("https://www.crunchyroll.com/discover")
+
     elif "play" in command :
         song = command.replace("play", "").strip()
 
@@ -59,14 +63,16 @@ def process_command(command : str) -> any:    #Process command function which pr
 
     elif "turn off" in command:
         if "close" in command and "turn off" in command:
-            pyautogui.hotkey("win","m")
+            gui.hotkey("win","m")
             time.sleep(1)
-            pyautogui.hotkey("alt","f4")
+            gui.hotkey("alt","f4")
             time.sleep(1)
-            pyautogui.click(978,520)
+            # gui.click(978,520)
+            gui.press("enter")
         else:
-            pyautogui.hotkey("alt","f4")
-            pyautogui.leftClick(978,520)
+            gui.hotkey("alt","f4")
+            # gui.leftClick(978,520)
+            gui.press("enter")
 
         
 if __name__ == "__main__":
@@ -98,7 +104,7 @@ if __name__ == "__main__":
                             print(".........")
                             
                             r.adjust_for_ambient_noise(source, duration=1)
-                            audio = r.listen(source, timeout=20, phrase_time_limit=7)
+                            audio = r.listen(source, timeout=20, phrase_time_limit=10)
 
                             print("Command recognizing...")
                             command = r.recognize_google(audio)
